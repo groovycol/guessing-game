@@ -4,13 +4,13 @@ import random
 guess = None
 name = raw_input ("Howdy, What's your name? ")
 play = True
+guess_list = []
 
-#play_game = ["yes", "no"]
-#play_game = raw_input("Do you want to play a game? ")
 while play:
     answer = raw_input("Do you want to play a game? (yes/no): ")
     if answer == "yes":
         print "Great!"
+        guess_list =[]
     else:
         print "Have it your way. Bye"
         play = False
@@ -18,9 +18,11 @@ while play:
     print "%s, I'm thinking of a number between 1 and 100." % (name)
     print "Try to guess my number."
     number = random.randint(1,100)
+    print number
     while guess != number:
         #This raw input is a string
         guess = raw_input("Your guess? ")
+        guess_list.append(guess)
         #this is our verification that the guess is only a digit
         try:
             str.isdigit(guess)
@@ -37,6 +39,7 @@ while play:
                 print "Your number is too low, try again!"
             else: 
                 print "Huzzah! you picked the it! The number is %s." % (number)
+                print "It took you %s guesses." % (len(guess_list))
                 break
         except:
             print "Whoops, input integers only! Try again."
